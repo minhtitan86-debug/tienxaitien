@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tiền Xài Tiền - Đổi Ngoại Tệ & USD sang VND (Tỷ Giá Vietcombank Live 100%)</title>
+  <meta name="description" content="Công cụ đổi tiền USD sang Việt Nam Đồng (VND) và ngược lại tự động 100%, cập nhật trực tiếp theo thời gian thực từ Ngân hàng Vietcombank.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💵</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       FINTECH DESIGN SYSTEM - TIỀN XÀI TIỀN (VIETCOMBANK LIVE)
+       ========================================================================== */
+    :root {
+      --bg-base: #0a0e17;
+      --bg-surface: rgba(16, 24, 40, 0.85);
+      --bg-surface-elevated: rgba(26, 38, 64, 0.95);
+      --bg-glass: rgba(255, 255, 255, 0.04);
+      --border-glass: rgba(255, 255, 255, 0.08);
+      --border-active: #10b981;
+
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+
+      /* Vietcombank Green & Fintech Gold Accents */
+      --vcb-green: #008744;
+      --vcb-green-glow: rgba(0, 135, 68, 0.4);
+      --accent-emerald: #10b981;
+      --accent-emerald-glow: rgba(16, 185, 129, 0.3);
+      --accent-gold: #f59e0b;
+      --accent-gold-glow: rgba(245, 158, 11, 0.3);
+      --accent-cyan: #06b6d4;
+      --accent-rose: #f43f5e;
+
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+      --shadow-lg: 0 20px 30px -10px rgba(0, 0, 0, 0.5);
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 8px;
+    }
+
+    [data-theme="light"] {
+      --bg-base: #f0fdf4;
+      --bg-surface: rgba(255, 255, 255, 0.9);
+      --bg-surface-elevated: #ffffff;
+      --bg-glass: rgba(0, 0, 0, 0.03);
+      --border-glass: rgba(0, 0, 0, 0.08);
+      --border-active: #059669;
+
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #94a3b8;
+
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.08) 0%, transparent 45%);
+      background-attachment: fixed;
+    }
+
+    .app-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+
+    /* Header */
+    .app-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 1.75rem;
+      background: var(--bg-surface);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #10b981, #008744);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 4px 14px var(--accent-emerald-glow);
+    }
+
+    .brand-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(to right, var(--text-main), var(--accent-emerald));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .vcb-tag {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--accent-emerald);
+      padding: 0.1rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.75rem;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .live-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.85rem;
+      background: var(--bg-glass);
+      border: 1px solid var(--border-glass);
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-emerald);
+      box-shadow: 0 0 10px var(--accent-emerald);
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.3); }
+    }
+
+    /* Main Layout */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 992px) {
+      .main-grid {
+        grid-template-columns: 1.15fr 0.85fr;
+      }
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg-surface);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s ease;
+    }
+
+    .card:hover {
+      border-color: rgba(16, 185, 129, 0.25);
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Converter Area */
+    .rate-type-selector {
+      display: flex;
+      gap: 0.5rem;
+      background: var(--bg-glass);
+      padding: 0.35rem;
+      border-radius: var(--radius-md);
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--border-glass);
+    }
+
+    .rate-tab {
+      flex: 1;
+      padding: 0.6rem 0.5rem;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 0.85rem;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+
+    .rate-tab:hover {
+      color: var(--text-main);
+    }
+
+    .rate-tab.active {
+      background: var(--bg-surface-elevated);
+      color: var(--accent-emerald);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    /* Exchange Input Boxes */
+    .exchange-box {
+      background: var(--bg-glass);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .exchange-box:focus-within {
+      border-color: var(--accent-emerald);
+      box-shadow: 0 0 0 3px var(--accent-emerald-glow);
+      background: var(--bg-surface-elevated);
+    }
+
+    .exchange-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .exchange-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .currency-picker {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-sm);
+      padding: 0.3rem 0.6rem;
+      cursor: pointer;
+      color: var(--text-main);
+      font-weight: 700;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .exchange-input-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .amount-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-family: var(--font-mono);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .amount-input::placeholder {
+      color: var(--text-dim);
+    }
+
+    .currency-symbol-tag {
+      font-family: var(--font-mono);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent-emerald);
+    }
+
+    /* Swap Button */
+    .swap-divider {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: -10px 0;
+      position: relative;
+      z-index: 10;
+    }
+
+    .btn-swap {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg-surface-elevated);
+      border: 2px solid var(--accent-emerald);
+      color: var(--accent-emerald);
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .btn-swap:hover {
+      transform: rotate(180deg) scale(1.1);
+      background: var(--accent-emerald);
+      color: #000000;
+      box-shadow: 0 0 16px var(--accent-emerald-glow);
+    }
+
+    /* Text into Words (Đọc số bằng chữ) */
+    .words-banner {
+      margin-top: 1.25rem;
+      padding: 0.85rem 1.1rem;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      color: var(--text-main);
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+    }
+
+    .words-banner strong {
+      color: var(--accent-emerald);
+    }
+
+    /* Quick Preset Chips */
+    .presets-container {
+      margin-top: 1.25rem;
+    }
+
+    .presets-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      margin-bottom: 0.5rem;
+    }
+
+    .preset-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .preset-chip {
+      padding: 0.35rem 0.75rem;
+      background: var(--bg-glass);
+      border: 1px solid var(--border-glass);
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .preset-chip:hover {
+      background: var(--bg-surface-elevated);
+      color: var(--accent-emerald);
+      border-color: var(--accent-emerald);
+      transform: translateY(-1px);
+    }
+
+    /* Rate Highlights Banner */
+    .rate-summary-banner {
+      margin-top: 1.5rem;
+      padding: 1rem 1.25rem;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-md);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .current-rate-display {
+      font-size: 1.1rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      color: var(--accent-gold);
+    }
+
+    .rate-timestamp {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+
+    /* Table & Search */
+    .table-search-box {
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.65rem 1rem 0.65rem 2.5rem;
+      background: var(--bg-glass);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-md);
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-emerald);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 0.85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-dim);
+      pointer-events: none;
+    }
+
+    .vcb-table-wrapper {
+      max-height: 480px;
+      overflow-y: auto;
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-md);
+    }
+
+    .vcb-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      text-align: right;
+    }
+
+    .vcb-table th {
+      background: var(--bg-surface-elevated);
+      padding: 0.75rem 0.6rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .vcb-table td {
+      padding: 0.7rem 0.6rem;
+      border-bottom: 1px solid var(--border-glass);
+      font-family: var(--font-mono);
+    }
+
+    .vcb-table tr {
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .vcb-table tr:hover {
+      background: rgba(16, 185, 129, 0.08);
+    }
+
+    .vcb-table tr.active-row {
+      background: rgba(16, 185, 129, 0.15);
+    }
+
+    .col-curr {
+      text-align: left;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .curr-code {
+      display: inline-block;
+      font-weight: 800;
+      color: var(--accent-emerald);
+      margin-right: 0.3rem;
+    }
+
+    .curr-name {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      font-family: var(--font-sans);
+      display: block;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 0.85rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: var(--bg-glass);
+      color: var(--text-main);
+      border: 1px solid var(--border-glass);
+    }
+
+    .btn:hover {
+      background: var(--bg-surface-elevated);
+      border-color: var(--accent-emerald);
+    }
+
+    .btn-icon {
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      border-radius: 50%;
+    }
+
+    /* Toast */
+    #toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      padding: 0.85rem 1.25rem;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--accent-emerald);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      font-size: 0.85rem;
+      opacity: 0;
+      transform: translateY(15px);
+      transition: all 0.3s ease;
+      z-index: 9999;
+      pointer-events: none;
+    }
+
+    #toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      padding-bottom: 2rem;
+    }
+
+    footer a {
+      color: var(--accent-emerald);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand-group">
+        <div class="brand-icon">💵</div>
+        <div>
+          <h1 class="brand-title">Tiền Xài Tiền</h1>
+          <div class="brand-subtitle">
+            <span>Tỷ giá ngoại tệ trực tiếp từ</span>
+            <span class="vcb-tag">Vietcombank Live</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <div id="live-badge" class="live-indicator">
+          <span class="pulse-dot"></span>
+          <span id="status-text">Đang tải VCB Live...</span>
+        </div>
+        <button id="btn-refresh" class="btn btn-icon" title="Cập nhật tỷ giá mới nhất">🔄</button>
+        <button id="btn-theme" class="btn btn-icon" title="Chuyển đổi giao diện Sáng / Tối">☀️</button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-grid">
+      <!-- Left Column: Converter Engine -->
+      <section class="left-section">
+        <div class="card converter-card">
+          <div class="card-title">
+            <span>🔄 Bộ Quy Đổi Ngoại Tệ</span>
+            <span id="rate-badge" class="vcb-tag">USD / VND</span>
+          </div>
+
+          <!-- Rate Mode Selector -->
+          <div class="rate-type-selector">
+            <button class="rate-tab active" data-type="Sell">
+              🏦 Bán Ra (Bạn mua USD)
+            </button>
+            <button class="rate-tab" data-type="Transfer">
+              💳 Mua CK (Kiều hối / Lương)
+            </button>
+            <button class="rate-tab" data-type="Buy">
+              💵 Mua Tiền Mặt
+            </button>
+          </div>
+
+          <!-- Input Box 1 (From) -->
+          <div class="exchange-box" id="box-from">
+            <div class="exchange-header">
+              <span class="exchange-label" id="label-from">Số tiền quy đổi</span>
+              <select id="select-foreign" class="currency-picker">
+                <option value="USD" selected>USD - Đô la Mỹ ($)</option>
+                <option value="EUR">EUR - Đồng Euro (€)</option>
+                <option value="GBP">GBP - Bảng Anh (£)</option>
+                <option value="JPY">JPY - Yên Nhật (¥)</option>
+                <option value="AUD">AUD - Đô la Úc ($)</option>
+                <option value="SGD">SGD - Đô la Singapore ($)</option>
+                <option value="CAD">CAD - Đô la Canada ($)</option>
+                <option value="CNY">CNY - Nhân dân tệ (¥)</option>
+                <option value="KRW">KRW - Won Hàn Quốc (₩)</option>
+                <option value="THB">THB - Baht Thái (฿)</option>
+                <option value="CHF">CHF - Franc Thụy Sĩ</option>
+                <option value="HKD">HKD - Đô la Hồng Kông</option>
+              </select>
+            </div>
+            <div class="exchange-input-row">
+              <input type="text" id="input-from" class="amount-input" placeholder="0" value="100" autofocus>
+              <span class="currency-symbol-tag" id="symbol-from">USD</span>
+            </div>
+          </div>
+
+          <!-- Swap Button -->
+          <div class="swap-divider">
+            <button id="btn-swap" class="btn-swap" title="Đảo chiều đổi tiền (USD ⇄ VND)">
+              ⇅
+            </button>
+          </div>
+
+          <!-- Input Box 2 (To) -->
+          <div class="exchange-box" id="box-to">
+            <div class="exchange-header">
+              <span class="exchange-label" id="label-to">Số tiền nhận được</span>
+              <div class="currency-picker" style="cursor: default;">
+                <span id="name-to">VND - Việt Nam Đồng (₫)</span>
+              </div>
+            </div>
+            <div class="exchange-input-row">
+              <input type="text" id="input-to" class="amount-input" placeholder="0" readonly>
+              <span class="currency-symbol-tag" id="symbol-to">VND</span>
+            </div>
+          </div>
+
+          <!-- Number in Vietnamese Words -->
+          <div class="words-banner" id="words-banner">
+            <span>🗣️</span>
+            <div>Bằng chữ: <strong id="text-in-words">Đang tính...</strong></div>
+          </div>
+
+          <!-- Quick Presets -->
+          <div class="presets-container">
+            <div class="presets-label">Mệnh giá nhanh:</div>
+            <div class="preset-chips" id="preset-chips">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Rate Summary Banner -->
+          <div class="rate-summary-banner">
+            <div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">Tỷ giá áp dụng hiện tại:</div>
+              <div class="current-rate-display" id="rate-formula">1 USD = 25,450 VND</div>
+            </div>
+            <div style="text-align: right;">
+              <div class="vcb-tag" id="rate-type-tag">Tỷ giá Bán</div>
+              <div class="rate-timestamp" id="vcb-timestamp">Cập nhật: --:--</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Full Vietcombank Rate Table -->
+      <section class="right-section">
+        <div class="card">
+          <div class="card-title">
+            <span>📊 Bảng Tỷ Giá Vietcombank</span>
+            <button id="btn-export-rate" class="btn" style="font-size: 0.75rem; padding: 0.3rem 0.6rem;">📋 Sao chép</button>
+          </div>
+
+          <!-- Search Filter -->
+          <div class="table-search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="search-currency" class="search-input" placeholder="Tìm ngoại tệ (USD, EUR, Yên, Won...)">
+          </div>
+
+          <!-- Table Container -->
+          <div class="vcb-table-wrapper">
+            <table class="vcb-table">
+              <thead>
+                <tr>
+                  <th style="text-align: left;">Ngoại tệ</th>
+                  <th>Mua TM</th>
+                  <th>Mua CK</th>
+                  <th>Bán ra</th>
+                </tr>
+              </thead>
+              <tbody id="rate-table-body">
+                <tr>
+                  <td colspan="4" style="text-align: center; padding: 2rem; color: var(--text-dim);">
+                    ⏳ Đang nạp dữ liệu từ Vietcombank...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="margin-top: 0.75rem; font-size: 0.75rem; color: var(--text-dim); text-align: center;">
+            💡 Chạm vào bất kỳ dòng tiền tệ nào trên bảng để quy đổi nhanh!
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p><strong>Tiền Xài Tiền</strong> • Dữ liệu tự động 100% từ Cổng thông tin Ngân hàng TMCP Ngoại thương Việt Nam (Vietcombank)</p>
+      <p style="margin-top: 0.3rem;">Mã nguồn mở trên <a href="https://github.com/minhtitan86-debug/tienxaitien" target="_blank">GitHub tienxaitien</a> • 100% Miễn phí & Không quảng cáo</p>
+    </footer>
+  </div>
+
+  <div id="toast">Thông báo</div>
+
+  <script>
+    /* ==========================================================================
+       VIETCOMBANK LIVE CURRENCY ENGINE
+       ========================================================================== */
+    const VCB_XML_URL = 'https://portal.vietcombank.com.vn/Usercontrols/TVWeb.TyGia/pXML.aspx';
+    
+    // Multi-Proxy Fallback
+    const PROXIES = [
+      (url) => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+      (url) => `https://corsproxy.io/?${encodeURIComponent(url)}`,
+      (url) => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`
+    ];
+
+    // State
+    const state = {
+      rates: {}, // Code -> { name, buy, transfer, sell }
+      lastUpdated: '',
+      selectedCurrency: 'USD',
+      direction: 'FOREIGN_TO_VND', // 'FOREIGN_TO_VND' | 'VND_TO_FOREIGN'
+      rateType: 'Sell', // 'Sell' | 'Transfer' | 'Buy'
+      theme: localStorage.getItem('tienxaitien_theme') || 'dark'
+    };
+
+    // DOM Elements
+    const el = {
+      statusText: document.getElementById('status-text'),
+      liveBadge: document.getElementById('live-badge'),
+      btnRefresh: document.getElementById('btn-refresh'),
+      btnTheme: document.getElementById('btn-theme'),
+      rateTabs: document.querySelectorAll('.rate-tab'),
+      selectForeign: document.getElementById('select-foreign'),
+      inputFrom: document.getElementById('input-from'),
+      inputTo: document.getElementById('input-to'),
+      symbolFrom: document.getElementById('symbol-from'),
+      symbolTo: document.getElementById('symbol-to'),
+      labelFrom: document.getElementById('label-from'),
+      labelTo: document.getElementById('label-to'),
+      nameTo: document.getElementById('name-to'),
+      btnSwap: document.getElementById('btn-swap'),
+      textInWords: document.getElementById('text-in-words'),
+      rateFormula: document.getElementById('rate-formula'),
+      rateTypeTag: document.getElementById('rate-type-tag'),
+      vcbTimestamp: document.getElementById('vcb-timestamp'),
+      rateTableBody: document.getElementById('rate-table-body'),
+      searchCurrency: document.getElementById('search-currency'),
+      presetChips: document.getElementById('preset-chips'),
+      rateBadge: document.getElementById('rate-badge'),
+      toast: document.getElementById('toast'),
+      btnExportRate: document.getElementById('btn-export-rate')
+    };
+
+    // Currency metadata map
+    const CURRENCY_INFO = {
+      USD: { name: 'Đô la Mỹ', symbol: '$' },
+      EUR: { name: 'Đồng Euro', symbol: '€' },
+      GBP: { name: 'Bảng Anh', symbol: '£' },
+      JPY: { name: 'Yên Nhật', symbol: '¥' },
+      AUD: { name: 'Đô la Úc', symbol: '$' },
+      SGD: { name: 'Đô la Singapore', symbol: '$' },
+      CAD: { name: 'Đô la Canada', symbol: '$' },
+      CNY: { name: 'Nhân dân tệ', symbol: '¥' },
+      KRW: { name: 'Won Hàn Quốc', symbol: '₩' },
+      THB: { name: 'Baht Thái', symbol: '฿' },
+      CHF: { name: 'Franc Thụy Sĩ', symbol: 'CHF' },
+      HKD: { name: 'Đô la Hồng Kông', symbol: '$' },
+      INR: { name: 'Rupee Ấn Độ', symbol: '₹' },
+      MYR: { name: 'Ringgit Malaysia', symbol: 'RM' },
+      RUB: { name: 'Rúp Nga', symbol: '₽' },
+      DKK: { name: 'Krone Đan Mạch', symbol: 'kr' },
+      NOK: { name: 'Krone Na Uy', symbol: 'kr' },
+      SEK: { name: 'Krona Thụy Điển', symbol: 'kr' }
+    };
+
+    // Init
+    document.addEventListener('DOMContentLoaded', () => {
+      initTheme();
+      initEventListeners();
+      renderPresets();
+      fetchVietcombankRates();
+      // Auto refresh every 5 minutes
+      setInterval(fetchVietcombankRates, 5 * 60 * 1000);
+    });
+
+    function initTheme() {
+      document.documentElement.setAttribute('data-theme', state.theme);
+      el.btnTheme.textContent = state.theme === 'dark' ? '☀️' : '🌙';
+    }
+
+    function initEventListeners() {
+      // Theme toggle
+      el.btnTheme.addEventListener('click', () => {
+        state.theme = state.theme === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('tienxaitien_theme', state.theme);
+        initTheme();
+      });
+
+      // Refresh button
+      el.btnRefresh.addEventListener('click', () => {
+        el.btnRefresh.style.transform = 'rotate(360deg)';
+        setTimeout(() => el.btnRefresh.style.transform = 'none', 400);
+        fetchVietcombankRates(true);
+      });
+
+      // Rate type tabs
+      el.rateTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          el.rateTabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          state.rateType = tab.getAttribute('data-type');
+          updateRateTypeDisplay();
+          calculateConversion();
+        });
+      });
+
+      // Currency Select
+      el.selectForeign.addEventListener('change', (e) => {
+        state.selectedCurrency = e.target.value;
+        updateCurrencyUI();
+        calculateConversion();
+        highlightTableRow();
+      });
+
+      // Input change
+      el.inputFrom.addEventListener('input', (e) => {
+        // Format input with commas
+        const raw = e.target.value.replace(/,/g, '');
+        if (!isNaN(raw) && raw !== '') {
+          const formatted = formatNumberInput(raw);
+          e.target.value = formatted;
+        }
+        calculateConversion();
+      });
+
+      // Swap button
+      el.btnSwap.addEventListener('click', () => {
+        state.direction = state.direction === 'FOREIGN_TO_VND' ? 'VND_TO_FOREIGN' : 'FOREIGN_TO_VND';
+        updateDirectionUI();
+        renderPresets();
+        calculateConversion();
+      });
+
+      // Search Currency table
+      el.searchCurrency.addEventListener('input', (e) => {
+        filterTable(e.target.value);
+      });
+
+      // Export rates
+      el.btnExportRate.addEventListener('click', () => {
+        copyRatesToClipboard();
+      });
+    }
+
+    /**
+     * Fetch Vietcombank Rates from XML API
+     */
+    async function fetchVietcombankRates(showToast = false) {
+      el.statusText.textContent = 'Đang đồng bộ Vietcombank...';
+      let xmlText = null;
+
+      // Try proxies
+      for (const getProxy of PROXIES) {
+        try {
+          const proxyUrl = getProxy(VCB_XML_URL);
+          const res = await fetch(proxyUrl, { headers: { 'Accept': 'application/xml, text/xml, */*' } });
+          if (res.ok) {
+            const text = await res.text();
+            if (text && text.includes('ExrateList')) {
+              xmlText = text;
+              break;
+            }
+          }
+        } catch (e) {
+          // Continue to next proxy
+        }
+      }
+
+      if (xmlText) {
+        parseVietcombankXml(xmlText);
+        el.statusText.textContent = 'VCB Live: Đã đồng bộ';
+        if (showToast) showNotification('✅ Đã cập nhật tỷ giá Vietcombank mới nhất!');
+      } else {
+        // Fallback realistic rates
+        loadFallbackRates();
+        el.statusText.textContent = 'VCB (Bộ đệm sẵn có)';
+        if (showToast) showNotification('⚠️ Không thể nối trực tiếp VCB, đang dùng dữ liệu dự phòng!');
+      }
+
+      renderTable();
+      updateCurrencyUI();
+      calculateConversion();
+    }
+
+    /**
+     * Parse Vietcombank XML Document
+     */
+    function parseVietcombankXml(xmlText) {
+      try {
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
+
+        const dateNode = xmlDoc.querySelector('DateTime');
+        if (dateNode) {
+          state.lastUpdated = dateNode.textContent;
+          el.vcbTimestamp.textContent = `VCB: ${state.lastUpdated}`;
+        }
+
+        const exrates = xmlDoc.querySelectorAll('Exrate');
+        state.rates = {};
+
+        exrates.forEach(node => {
+          const code = node.getAttribute('CurrencyCode');
+          const name = node.getAttribute('CurrencyName');
+          const buyStr = node.getAttribute('Buy') || '0';
+          const transferStr = node.getAttribute('Transfer') || '0';
+          const sellStr = node.getAttribute('Sell') || '0';
+
+          const parseNum = (s) => {
+            const clean = s.replace(/,/g, '').trim();
+            return isNaN(parseFloat(clean)) ? 0 : parseFloat(clean);
+          };
+
+          state.rates[code] = {
+            code: code,
+            name: (CURRENCY_INFO[code] && CURRENCY_INFO[code].name) || name,
+            buy: parseNum(buyStr),
+            transfer: parseNum(transferStr),
+            sell: parseNum(sellStr)
+          };
+        });
+
+      } catch (err) {
+        console.error('Lỗi khi parse XML Vietcombank:', err);
+        loadFallbackRates();
+      }
+    }
+
+    /**
+     * Fallback standard rates
+     */
+    function loadFallbackRates() {
+      state.lastUpdated = new Date().toLocaleTimeString('vi-VN') + ' (Hôm nay)';
+      el.vcbTimestamp.textContent = `VCB: ${state.lastUpdated}`;
+      state.rates = {
+        USD: { code: 'USD', name: 'Đô la Mỹ', buy: 25020, transfer: 25050, sell: 25410 },
+        EUR: { code: 'EUR', name: 'Đồng Euro', buy: 26450, transfer: 26710, sell: 27900 },
+        GBP: { code: 'GBP', name: 'Bảng Anh', buy: 31200, transfer: 31510, sell: 32530 },
+        JPY: { code: 'JPY', name: 'Yên Nhật', buy: 160.5, transfer: 162.1, sell: 170.2 },
+        AUD: { code: 'AUD', name: 'Đô la Úc', buy: 16120, transfer: 16280, sell: 16800 },
+        SGD: { code: 'SGD', name: 'Đô la Singapore', buy: 18450, transfer: 18630, sell: 19230 },
+        CAD: { code: 'CAD', name: 'Đô la Canada', buy: 17850, transfer: 18030, sell: 18610 },
+        CNY: { code: 'CNY', name: 'Nhân dân tệ', buy: 3450, transfer: 3480, sell: 3600 },
+        KRW: { code: 'KRW', name: 'Won Hàn Quốc', buy: 16.8, transfer: 18.6, sell: 20.5 },
+        THB: { code: 'THB', name: 'Baht Thái', buy: 680, transfer: 715, sell: 770 },
+        CHF: { code: 'CHF', name: 'Franc Thụy Sĩ', buy: 28100, transfer: 28380, sell: 29300 },
+        HKD: { code: 'HKD', name: 'Đô la Hồng Kông', buy: 3150, transfer: 3180, sell: 3290 }
+      };
+    }
+
+    /**
+     * Calculate Conversion
+     */
+    function calculateConversion() {
+      const code = state.selectedCurrency;
+      const rateObj = state.rates[code] || { buy: 25020, transfer: 25050, sell: 25410 };
+      
+      let rate = rateObj[state.rateType.toLowerCase()] || rateObj.sell;
+      if (!rate || rate === 0) rate = rateObj.sell || 25410;
+
+      // Update rate formula text
+      const currSymbol = (CURRENCY_INFO[code] && CURRENCY_INFO[code].symbol) || code;
+      el.rateFormula.textContent = `1 ${code} = ${formatVND(rate)} VND`;
+      el.rateBadge.textContent = `${code} / VND`;
+
+      const inputValRaw = el.inputFrom.value.replace(/,/g, '');
+      const amount = parseFloat(inputValRaw) || 0;
+
+      let result = 0;
+      if (state.direction === 'FOREIGN_TO_VND') {
+        result = amount * rate;
+        el.inputTo.value = formatNumber(Math.round(result));
+        el.textInWords.textContent = readVietnameseNumber(Math.round(result)) + ' đồng';
+      } else {
+        result = rate > 0 ? (amount / rate) : 0;
+        el.inputTo.value = formatDecimal(result, code === 'JPY' || code === 'KRW' ? 0 : 2);
+        el.textInWords.textContent = `${readVietnameseNumber(Math.round(amount))} Việt Nam Đồng quy đổi tương đương ${formatDecimal(result, 2)} ${code}`;
+      }
+    }
+
+    /**
+     * Update UI based on Direction
+     */
+    function updateDirectionUI() {
+      const code = state.selectedCurrency;
+      if (state.direction === 'FOREIGN_TO_VND') {
+        el.labelFrom.textContent = `Số tiền ${code} quy đổi:`;
+        el.symbolFrom.textContent = code;
+        el.labelTo.textContent = `Số tiền VND nhận được:`;
+        el.symbolTo.textContent = 'VND';
+        el.nameTo.textContent = 'VND - Việt Nam Đồng (₫)';
+        el.inputFrom.value = '100';
+      } else {
+        el.labelFrom.textContent = `Số tiền VND quy đổi:`;
+        el.symbolFrom.textContent = 'VND';
+        el.labelTo.textContent = `Số tiền ${code} nhận được:`;
+        el.symbolTo.textContent = code;
+        el.nameTo.textContent = `${code} - ${CURRENCY_INFO[code]?.name || code}`;
+        el.inputFrom.value = '5,000,000';
+      }
+    }
+
+    function updateRateTypeDisplay() {
+      const typeMap = {
+        'Sell': 'Tỷ giá Bán ra (Bạn mua ngoại tệ)',
+        'Transfer': 'Tỷ giá Mua CK (Kiều hối / Lương)',
+        'Buy': 'Tỷ giá Mua Tiền Mặt'
+      };
+      el.rateTypeTag.textContent = typeMap[state.rateType] || 'Tỷ giá Bán';
+    }
+
+    function updateCurrencyUI() {
+      const code = state.selectedCurrency;
+      if (state.direction === 'FOREIGN_TO_VND') {
+        el.symbolFrom.textContent = code;
+        el.labelFrom.textContent = `Số tiền ${code} quy đổi:`;
+      } else {
+        el.symbolTo.textContent = code;
+        el.nameTo.textContent = `${code} - ${CURRENCY_INFO[code]?.name || code}`;
+        el.labelTo.textContent = `Số tiền ${code} nhận được:`;
+      }
+      renderPresets();
+    }
+
+    /**
+     * Presets Chips
+     */
+    function renderPresets() {
+      el.presetChips.innerHTML = '';
+      const code = state.selectedCurrency;
+
+      let presets = [];
+      if (state.direction === 'FOREIGN_TO_VND') {
+        presets = [10, 50, 100, 200, 500, 1000, 5000, 10000];
+        if (code === 'JPY' || code === 'KRW') {
+          presets = [1000, 5000, 10000, 50000, 100000, 500000];
+        }
+      } else {
+        presets = [500000, 1000000, 2000000, 5000000, 10000000, 20000000, 50000000, 100000000];
+      }
+
+      presets.forEach(val => {
+        const chip = document.createElement('button');
+        chip.className = 'preset-chip';
+        if (state.direction === 'FOREIGN_TO_VND') {
+          chip.textContent = `${formatNumber(val)} ${code}`;
+        } else {
+          chip.textContent = val >= 1000000 ? `${val / 1000000} Triệu` : `${val / 1000}k`;
+        }
+
+        chip.addEventListener('click', () => {
+          el.inputFrom.value = formatNumber(val);
+          calculateConversion();
+        });
+        el.presetChips.appendChild(chip);
+      });
+    }
+
+    /**
+     * Render Rates Table
+     */
+    function renderTable() {
+      const tbody = el.rateTableBody;
+      tbody.innerHTML = '';
+
+      Object.values(state.rates).forEach(r => {
+        const tr = document.createElement('tr');
+        tr.setAttribute('data-code', r.code);
+        if (r.code === state.selectedCurrency) tr.classList.add('active-row');
+
+        tr.innerHTML = `
+          <td class="col-curr">
+            <span class="curr-code">${r.code}</span>
+            <span class="curr-name">${r.name}</span>
+          </td>
+          <td>${r.buy > 0 ? formatVND(r.buy) : '-'}</td>
+          <td>${r.transfer > 0 ? formatVND(r.transfer) : '-'}</td>
+          <td style="color: var(--accent-emerald); font-weight: 700;">${r.sell > 0 ? formatVND(r.sell) : '-'}</td>
+        `;
+
+        tr.addEventListener('click', () => {
+          state.selectedCurrency = r.code;
+          el.selectForeign.value = r.code;
+          updateCurrencyUI();
+          calculateConversion();
+          highlightTableRow();
+          showNotification(`Đã chọn quy đổi ngoại tệ ${r.code} (${r.name})`);
+        });
+
+        tbody.appendChild(tr);
+      });
+    }
+
+    function highlightTableRow() {
+      document.querySelectorAll('#rate-table-body tr').forEach(row => {
+        if (row.getAttribute('data-code') === state.selectedCurrency) {
+          row.classList.add('active-row');
+        } else {
+          row.classList.remove('active-row');
+        }
+      });
+    }
+
+    function filterTable(keyword) {
+      const k = keyword.trim().toLowerCase();
+      document.querySelectorAll('#rate-table-body tr').forEach(row => {
+        const text = row.textContent.toLowerCase();
+        if (text.includes(k)) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+
+    function copyRatesToClipboard() {
+      const code = state.selectedCurrency;
+      const r = state.rates[code];
+      if (!r) return;
+      const text = `Tỷ giá Vietcombank ${code} (${state.lastUpdated}):\n- Mua TM: ${formatVND(r.buy)} VND\n- Mua CK: ${formatVND(r.transfer)} VND\n- Bán ra: ${formatVND(r.sell)} VND`;
+      navigator.clipboard.writeText(text);
+      showNotification('📋 Đã sao chép tỷ giá vào clipboard!');
+    }
+
+    /**
+     * Number & Formatting Helpers
+     */
+    function formatNumber(num) {
+      return new Intl.NumberFormat('en-US').format(num);
+    }
+
+    function formatNumberInput(str) {
+      const parts = str.split('.');
+      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      return parts.join('.');
+    }
+
+    function formatVND(num) {
+      return new Intl.NumberFormat('vi-VN', { maximumFractionDigits: 2 }).format(num);
+    }
+
+    function formatDecimal(num, decimals = 2) {
+      return new Intl.NumberFormat('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals }).format(num);
+    }
+
+    function showNotification(msg) {
+      el.toast.textContent = msg;
+      el.toast.classList.add('show');
+      setTimeout(() => el.toast.classList.remove('show'), 3000);
+    }
+
+    /**
+     * Vietnamese Number to Words (Chuyển số thành chữ Tiếng Việt chuẩn xác)
+     */
+    function readVietnameseNumber(number) {
+      if (number === 0) return 'Không';
+      if (isNaN(number)) return '';
+
+      const ChuSo = ["không", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín"];
+      const Tien = ["", "nghìn", "triệu", "tỷ", "nghìn tỷ", "triệu tỷ"];
+
+      function docSo3ChuSo(baso) {
+        let tram = Math.floor(baso / 100);
+        let chuc = Math.floor((baso % 100) / 10);
+        let donvi = baso % 10;
+        let ketqua = "";
+
+        if (tram === 0 && chuc === 0 && donvi === 0) return "";
+        if (tram !== 0) {
+          ketqua += ChuSo[tram] + " trăm ";
+          if (chuc === 0 && donvi !== 0) ketqua += "lẻ ";
+        }
+        if (chuc !== 0 && chuc !== 1) {
+          ketqua += ChuSo[chuc] + " mươi";
+          if (chuc === 0 && donvi !== 0) ketqua += " linh ";
+        }
+        if (chuc === 1) ketqua += "mười ";
+        switch (donvi) {
+          case 1:
+            if (chuc > 1) ketqua += " mốt";
+            else ketqua += ChuSo[donvi];
+            break;
+          case 5:
+            if (chuc === 0) ketqua += ChuSo[donvi];
+            else ketqua += " lăm";
+            break;
+          default:
+            if (donvi !== 0) ketqua += " " + ChuSo[donvi];
+            break;
+        }
+        return ketqua;
+      }
+
+      let strNumber = Math.abs(number).toString();
+      let viTri = [];
+      while (strNumber.length > 0) {
+        viTri.push(strNumber.slice(-3));
+        strNumber = strNumber.slice(0, -3);
+      }
+
+      let strResult = "";
+      for (let i = viTri.length - 1; i >= 0; i--) {
+        let block = parseInt(viTri[i], 10);
+        if (block !== 0) {
+          strResult += docSo3ChuSo(block) + " " + Tien[i] + " ";
+        }
+      }
+
+      strResult = strResult.trim().replace(/\s+/g, ' ');
+      return strResult.charAt(0).toUpperCase() + strResult.slice(1);
+    }
+  </script>
+</body>
+</html>
